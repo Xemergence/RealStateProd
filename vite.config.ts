@@ -21,11 +21,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ["react", "react-dom"],
           router: ["react-router-dom"],
-          ui: [
-            "@radix-ui/react-avatar",
-            "@radix-ui/react-button",
-            "@radix-ui/react-card",
-          ],
+          ui: ["@radix-ui/react-avatar", "@radix-ui/react-card"],
         },
       },
     },
