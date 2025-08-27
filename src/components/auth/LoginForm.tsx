@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
+import { supabase } from "../../../supabase/supabase";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -15,11 +16,27 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     try {
-      await signIn(email, password);
-      navigate("/");
-    } catch (error) {
-      setError("Invalid email or password");
+      const { error } = await signIn(email, password);
+      if (error) throw error;
+
+      const { data: userData } = await supabase.auth.getUser();
+      const id = userData.user?.id;
+      if (id) {
+        const { data } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', id)
+          .single();
+        const role = data?.role as 'tenant' | 'property_owner' | undefined;
+        if (role === 'tenant') navigate('/tenant-dashboard');
+        else navigate('/dashboard');
+      } else {
+        navigate('/dashboard');
+      }
+    } catch (err: any) {
+      setError(err?.message || "Invalid email or password");
     }
   };
 

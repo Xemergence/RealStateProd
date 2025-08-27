@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../../supabase/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, MailCheck } from "lucide-react";
 
 export default function SignUpForm() {
   const [email, setEmail] = useState("");
@@ -18,9 +18,9 @@ export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sent, setSent] = useState(false);
   
   const { signUp } = useAuth();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ export default function SignUpForm() {
       if (error) {
         setError(error.message);
       } else {
-        navigate("/success");
+        setSent(true);
       }
     } catch (err) {
       setError("An unexpected error occurred");
@@ -53,7 +53,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto bg-white">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>
         <CardDescription className="text-center">
@@ -61,6 +61,13 @@ export default function SignUpForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {sent ? (
+          <div className="text-center space-y-4">
+            <MailCheck className="w-10 h-10 text-green-600 mx-auto" />
+            <p className="text-gray-700">Check your email to confirm your account. Then you will be redirected here to finish signing in.</p>
+            <p className="text-sm text-gray-500">Didn't get the email? Check your spam folder.</p>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
             <Alert variant="destructive">
@@ -149,6 +156,7 @@ export default function SignUpForm() {
             {loading ? "Creating Account..." : "Create Account"}
           </Button>
         </form>
+        )}
 
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}

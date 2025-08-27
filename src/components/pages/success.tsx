@@ -1,7 +1,15 @@
 import { CheckCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useSearchParams, Link } from 'react-router-dom'
 
 export default function Success() {
+    const [params] = useSearchParams();
+    const type = params.get('type');
+    const title = type === 'verify' ? 'Check your email' : 'Success!';
+    const desc = type === 'verify' 
+      ? 'We sent you a confirmation email. Click the link to verify your account.'
+      : 'Your action was completed successfully.';
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
             <motion.div 
@@ -23,7 +31,7 @@ export default function Success() {
                     transition={{ delay: 0.4 }}
                     className="text-3xl font-bold text-gray-800 mb-4"
                 >
-                    Payment Successful!
+                    {title}
                 </motion.h1>
                 <motion.p 
                     initial={{ opacity: 0 }}
@@ -31,19 +39,19 @@ export default function Success() {
                     transition={{ delay: 0.6 }}
                     className="text-gray-600 mb-6"
                 >
-                    Thank you for your purchase. You will receive a confirmation email shortly.
+                    {desc}
                 </motion.p>
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                 >
-                    <a 
-                        href="/"
+                    <Link 
+                        to="/"
                         className="inline-block bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors duration-200"
                     >
                         Home
-                    </a>
+                    </Link>
                 </motion.div>
             </motion.div>
         </div>
