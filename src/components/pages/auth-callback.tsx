@@ -16,22 +16,12 @@ export default function AuthCallback() {
 
         const type = searchParams.get('type');
         if (type === 'recovery') {
-          // Go to reset password page
           navigate('/reset-password');
           return;
         }
 
-        // Navigate by role after signup/confirm
-        const { data: userData } = await supabase.auth.getUser();
-        const id = userData.user?.id;
-        if (id) {
-          const { data } = await supabase.from('users').select('role').eq('id', id).single();
-          const role = data?.role as 'tenant' | 'property_owner' | undefined;
-          if (role === 'tenant') navigate('/tenant-dashboard');
-          else navigate('/dashboard');
-        } else {
-          navigate('/dashboard');
-        }
+        // After confirmation, land on the home page while signed in
+        navigate('/');
       } catch (e: any) {
         setMessage(e?.message || 'Could not complete sign in. Please try again.');
       }

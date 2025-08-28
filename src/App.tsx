@@ -7,7 +7,7 @@ import TenantDashboard from "@/components/pages/tenant-dashboard";
 import AuthCallback from "@/components/pages/auth-callback";
 import ForgotPassword from "@/components/pages/forgot-password";
 import ResetPassword from "@/components/pages/reset-password";
-import { useAuth } from "../supabase/auth";
+import { useAuth } from "@/supabase/auth";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();

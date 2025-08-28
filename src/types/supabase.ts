@@ -14,6 +14,174 @@ export type Database = {
   }
   public: {
     Tables: {
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          id: string
+          incurred_on: string
+          note: string | null
+          property_id: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          created_at?: string
+          id?: string
+          incurred_on?: string
+          note?: string | null
+          property_id: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          id?: string
+          incurred_on?: string
+          note?: string | null
+          property_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expenses_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      maintenance_requests: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          owner_estimate: number | null
+          priority: string
+          property_id: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          owner_estimate?: number | null
+          priority?: string
+          property_id: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          owner_estimate?: number | null
+          priority?: string
+          property_id?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "maintenance_requests_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      properties: {
+        Row: {
+          address_line: string
+          bathrooms: number | null
+          bedrooms: number | null
+          city: string
+          created_at: string
+          est_value: number | null
+          id: string
+          monthly_rent: number | null
+          occupancy_rate: number | null
+          postal_code: string
+          purchase_price: number | null
+          size_sqft: number | null
+          state: string
+          year_built: number | null
+        }
+        Insert: {
+          address_line: string
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city: string
+          created_at?: string
+          est_value?: number | null
+          id?: string
+          monthly_rent?: number | null
+          occupancy_rate?: number | null
+          postal_code: string
+          purchase_price?: number | null
+          size_sqft?: number | null
+          state: string
+          year_built?: number | null
+        }
+        Update: {
+          address_line?: string
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city?: string
+          created_at?: string
+          est_value?: number | null
+          id?: string
+          monthly_rent?: number | null
+          occupancy_rate?: number | null
+          postal_code?: string
+          purchase_price?: number | null
+          size_sqft?: number | null
+          state?: string
+          year_built?: number | null
+        }
+        Relationships: []
+      }
+      property_members: {
+        Row: {
+          created_at: string
+          property_id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          property_id: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          property_id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_members_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           avatar_url: string | null
