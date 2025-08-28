@@ -1,16 +1,27 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Home, 
-  Building2, 
-  CreditCard, 
-  FileText, 
-  CheckSquare, 
-  TrendingUp, 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Home,
+  Building2,
+  CreditCard,
+  FileText,
+  CheckSquare,
+  TrendingUp,
   Check,
   User,
-  Settings
+  Settings,
+  Rocket,
+  CalendarClock,
+  Cpu,
+  Wifi,
+  Sparkles,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -20,8 +31,15 @@ export default function LandingPage() {
       <header className="fixed top-0 z-50 w-full bg-[rgba(255,255,255,0.95)] backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-6">
           <div className="flex items-center">
-            <Link to="/" className="font-semibold text-xl text-gray-900">
-              HomeHub
+            <Link to="/" className="flex items-center gap-2">
+              <img
+                src="/logo-white.png"
+                alt="HomeHub logo"
+                className="h-8 w-8 rounded-full border border-white ring-2 ring-gray-200 bg-white object-contain shadow-sm"
+              />
+              <span className="font-semibold text-xl text-gray-900">
+                HomeHub
+              </span>
             </Link>
           </div>
           <div className="flex items-center space-x-6">
@@ -53,9 +71,9 @@ export default function LandingPage() {
               Powering Your Rentals & Homes
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              The complete property management platform for landlords and
-              tenants. Streamline payments, organize documents, and manage tasks
-              effortlessly.
+              The modern platform for property owners and tenants. Gain
+              visibility with data and sensors, decrease operational costs, and
+              enhance efficiency with AI-powered tools.
             </p>
             <div className="flex justify-center items-center mb-12">
               <Link to="/dashboard">
@@ -91,6 +109,96 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What it does for Owners & Tenants */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <div className="space-y-6">
+              <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+                Designed for Owners & Tenants
+              </h2>
+              <p className="text-lg text-gray-600">
+                Real-time visibility using data and sensors helps prevent
+                issues, reduce costs, and improve experiences for everyone.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Wifi className="h-5 w-5 text-blue-600 mt-1" />
+                  <p className="text-gray-700">
+                    <span className="font-medium">Sensor-driven insights:</span>{" "}
+                    monitor temperature, humidity, and occupancy to catch
+                    problems early.
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Cpu className="h-5 w-5 text-purple-600 mt-1" />
+                  <p className="text-gray-700">
+                    <span className="font-medium">AI efficiency:</span> automate
+                    reminders, predict maintenance, and reduce operational
+                    overhead.
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Sparkles className="h-5 w-5 text-emerald-600 mt-1" />
+                  <p className="text-gray-700">
+                    <span className="font-medium">Clear communication:</span>{" "}
+                    tasks, documents, and payments in one place.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="rounded-2xl border-0 shadow-lg bg-white">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3">
+                    <User className="h-6 w-6 text-blue-600" />
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      For Tenants
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent className="text-gray-600 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-green-600" /> Mobile payments
+                    & receipts
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-green-600" /> Report issues
+                    instantly
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-green-600" /> Document vault
+                    access
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="rounded-2xl border-0 shadow-lg bg-white">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3">
+                    <Settings className="h-6 w-6 text-purple-600" />
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      For Owners
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent className="text-gray-600 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-green-600" /> Automated
+                    collections
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-green-600" /> Portfolio KPIs
+                    & forecasts
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-green-600" /> Centralized
+                    docs & tasks
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -176,6 +284,106 @@ export default function LandingPage() {
                   </CardDescription>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Roadmap Timeline */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold tracking-tight mb-4 text-gray-900">
+                Product Roadmap
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Here’s where we are and what’s coming next.
+              </p>
+            </div>
+            <div className="relative">
+              <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-1 bg-gray-100 rounded-full" />
+              <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-10">
+                <div className="flex md:justify-end">
+                  <div className="w-full md:w-[90%] bg-gray-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Rocket className="h-5 w-5 text-blue-600" />
+                      <span className="text-sm font-medium text-blue-600">
+                        Now
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      Deploying V1
+                    </h3>
+                    <p className="text-gray-600 mt-2">
+                      Core features: dashboard, tasks, documents, and payments
+                      foundation.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="w-full md:w-[90%] bg-gray-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <CalendarClock className="h-5 w-5 text-purple-600" />
+                      <span className="text-sm font-medium text-purple-600">
+                        Fall 2025
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      Scaling
+                    </h3>
+                    <p className="text-gray-600 mt-2">
+                      Performance, roles, and advanced reporting.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex md:justify-end">
+                  <div className="w-full md:w-[90%] bg-gray-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <CalendarClock className="h-5 w-5 text-emerald-600" />
+                      <span className="text-sm font-medium text-emerald-600">
+                        Dec 2025
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      Build Release
+                    </h3>
+                    <p className="text-gray-600 mt-2">
+                      Owner tools for portfolio growth and deeper insights.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="w-full md:w-[90%] bg-gray-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Wifi className="h-5 w-5 text-cyan-600" />
+                      <span className="text-sm font-medium text-cyan-600">
+                        Spring 2026
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      IoT Integration
+                    </h3>
+                    <p className="text-gray-600 mt-2">
+                      Sensor data ingestion for real-time property visibility.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex md:justify-end">
+                  <div className="w-full md:w-[90%] bg-gray-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Cpu className="h-5 w-5 text-rose-600" />
+                      <span className="text-sm font-medium text-rose-600">
+                        Summer 2026
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      AI Integration
+                    </h3>
+                    <p className="text-gray-600 mt-2">
+                      Predictive maintenance, anomaly detection, and automation.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

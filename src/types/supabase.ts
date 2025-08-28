@@ -182,6 +182,47 @@ export type Database = {
           },
         ]
       }
+      tasks: {
+        Row: {
+          assignee_user_id: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          property_id: string | null
+          status: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          assignee_user_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          property_id?: string | null
+          status?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          assignee_user_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          property_id?: string | null
+          status?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           avatar_url: string | null
